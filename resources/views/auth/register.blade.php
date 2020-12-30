@@ -65,6 +65,33 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="division_id" class="col-md-4 col-form-label text-md-right">{{ __('Division') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="division_id">
+                                    <option value="">Please select your division</option>
+                                    @foreach ($divisions as $division)
+                                        <option value="{{$division->id}}">{{$division->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="district_id" class="col-md-4 col-form-label text-md-right">{{ __('District') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="district_id">
+                                    <option value="">Please select your district</option>
+                                    @foreach ($districts as $district)
+                                        <option value="{{$district->id}}">{{$district->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="street_address" class="col-md-4 col-form-label text-md-right">{{ __('Street Address') }}</label>
 
