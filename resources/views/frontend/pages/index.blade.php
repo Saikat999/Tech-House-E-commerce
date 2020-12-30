@@ -96,7 +96,7 @@
  </section>
 
  <!-- End Gallery part -->
- <section class="contact">
+ <section class="contact" id="contactpart">
      <h2 class="text-center">--Contact Us--</h2>
  </section>
 

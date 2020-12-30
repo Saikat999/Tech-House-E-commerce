@@ -8,6 +8,8 @@ use App\Http\Controllers\Backend\PagesController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\DivisionController;
+use App\Http\Controllers\Backend\DistrictController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +78,29 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/store',[BrandController::class,'store'])->name('admin.brand.store');
         Route::post('/update/{id}',[BrandController::class,'update'])->name('admin.brand.update');
         Route::post('/delete/{id}',[BrandController::class,'delete'])->name('admin.brand.delete');
+    });
+
+     // Division Route
+     Route::group(['prefix'=>'/divisions'],function(){
+        Route::get('/',[DivisionController::class,'index'])->name('admin.divisions');
+        Route::get('/create',[DivisionController::class,'create'])->name('admin.division.create');
+        Route::get('/edit/{id}',[DivisionController::class,'edit'])->name('admin.division.edit');
+    
+        Route::post('/store',[DivisionController::class,'store'])->name('admin.division.store');
+        Route::post('/update/{id}',[DivisionController::class,'update'])->name('admin.division.update');
+        Route::post('/delete/{id}',[DivisionController::class,'delete'])->name('admin.division.delete');
+    });
+
+    
+     // District Route
+     Route::group(['prefix'=>'/districts'],function(){
+        Route::get('/',[DistrictController::class,'index'])->name('admin.districts');
+        Route::get('/create',[DistrictController::class,'create'])->name('admin.district.create');
+        Route::get('/edit/{id}',[DistrictController::class,'edit'])->name('admin.district.edit');
+    
+        Route::post('/store',[DistrictController::class,'store'])->name('admin.district.store');
+        Route::post('/update/{id}',[DistrictController::class,'update'])->name('admin.district.update');
+        Route::post('/delete/{id}',[DistrictController::class,'delete'])->name('admin.district.delete');
     });
 
 });

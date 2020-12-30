@@ -78,6 +78,38 @@
                     </div>
                 </div>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDivision"
+                    aria-expanded="true" aria-controls="collapseForm">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2"></i>
+                    <span>Manage Division</span>
+                </a>
+                <div id="collapseDivision" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Manage Division</h6>
+                        <a class="collapse-item" href="{{route('admin.divisions')}}"><i class="fas fa-edit fa-sm fa-fw mr-2"></i>Division</a>
+                        <a class="collapse-item" href="{{route('admin.division.create')}}"><i class="fas fa-plus-circle fa-sm fa-fw mr-2"></i>Add Division</a>
+                        
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDistrict"
+                    aria-expanded="true" aria-controls="collapseForm">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2"></i>
+                    <span>Manage District</span>
+                </a>
+                <div id="collapseDistrict" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Manage District</h6>
+                        <a class="collapse-item" href="{{route('admin.districts')}}"><i class="fas fa-edit fa-sm fa-fw mr-2"></i>District</a>
+                        <a class="collapse-item" href="{{route('admin.district.create')}}"><i class="fas fa-plus-circle fa-sm fa-fw mr-2"></i>Add District</a>
+                        
+                    </div>
+                </div>
+            </li>
            
             {{-- <hr class="sidebar-divider">
             <div class="sidebar-heading">

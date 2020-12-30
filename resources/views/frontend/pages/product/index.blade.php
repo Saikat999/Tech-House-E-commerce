@@ -14,7 +14,7 @@
                 <div class="widget">
                     <div class="heading" id="iphone" style="margin-bottom:20px;">
                         <fieldset class="fieldset">
-                            <h3 class="text-center text-white">iphone</h3>
+                            <h3 class="text-center text-white">All Products</h3>
                         </fieldset>
                     </div>
 
