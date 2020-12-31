@@ -8,10 +8,14 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 use App\Models\Division;
 use App\Models\District;
+use App\Notifications\VerifyRegistration;
+
 
 class RegisterController extends Controller
 {
@@ -81,19 +85,26 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function register(Request $request)
     {
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'username' => Str::slug($data['first_name'].$data['last_name']),
-            'email' => $data['email'],
-            'mobile' => $data['mobile'],
-            'division_id' => $data['division_id'],
-            'district_id' => $data['district_id'],
-            'street_address' => $data['street_address'],
+        $user = User::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'username' => Str::slug($request->first_name.$request->last_name),
+            'email' => $request->email,
+            'mobile' => $request->mobile,
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'street_address' => $request->street_address,
             'ip_address' => request()->ip(),
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($request->password),
+            'remember_token' => Str::random(50),
+            'status' => 0,
         ]);
+
+        $user->notify(new VerifyRegistration($user));
+
+        session()->flash('success','A Confirmation mail has sent to you... Please check and confirm');
+        return redirect('/');
     }
 }

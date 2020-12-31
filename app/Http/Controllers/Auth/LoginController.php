@@ -6,6 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Request;
+use App\Notifications\VerifyRegistration;
+use App\Models\User;
+
+use Auth;
+
+
 class LoginController extends Controller
 {
     /*
@@ -36,5 +43,40 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request)
+    {
+
+        $this->validate($request,[
+            'email' =>'required|email',
+            'password' =>'required',
+        ]);
+
+        //Find user by mail
+
+        $user=User::where('email',$request->email)->first();
+
+        if($user->status ==1){
+
+            //login this user
+
+            if(Auth::guard('web')->attempt(['email'=> $request->email,'password'=> $request->password],$request->remember_token)){
+               
+                //  log his/her now
+                return redirect()->intended(route('index'));
+            }
+        }else{
+             // send him a token again
+             if(!is_null($user)){
+                $user->notify(new VerifyRegistration($user));
+                session()->flash('success','A new Confirmation mail has sent to you... Please check and confirm');
+                return redirect('/');
+
+             }else{
+                session()->flash('errors','Please log in first');
+                return redirect()->route('login');
+             }
+        }
     }
 }

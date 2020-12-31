@@ -26,6 +26,7 @@ class User extends Authenticatable
         'district_id',
         'street_address',
         'ip_address',
+        'remember_token',
         'password',
     ];
 

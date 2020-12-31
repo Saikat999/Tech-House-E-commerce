@@ -88,6 +88,7 @@
     </section>
     <!-- ---------End Navbar ------------- -->
     <div>
+        @include('frontend.partials.messages')
         @yield('content')
     </div>
 

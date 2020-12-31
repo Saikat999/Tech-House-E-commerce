@@ -1,9 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductsController;
 use App\Http\Controllers\Frontend\CategoriesController;
+use App\Http\Controllers\Frontend\VerificationController;
+
 use App\Http\Controllers\Backend\PagesController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -26,12 +29,12 @@ use App\Http\Controllers\Backend\DistrictController;
 //     return view('welcome');
 // });
 
-Route::get('/',[HomeController::class,'home']);
+Route::get('/',[HomeController::class,'home'])->name('index');
 // Route::get('/cake',[Frontend\HomeController::class,'cake']);
+
 
 // Product Route
 // All the route for our product for Frontend
-
 Route::group(['prefix'=>'products'],function(){
 
 Route::get('/',[ProductsController::class,'index'])->name('products');
@@ -42,6 +45,11 @@ Route::get('/new/search',[HomeController::class,'search'])->name('search');
 Route::get('/categories',[CategoriesController::class,'index'])->name('categories.index');
 Route::get('/category/{id}',[CategoriesController::class,'show'])->name('categories.show');
 });
+
+
+//User Routes
+Route::get('/token/{token}',[VerificationController::class,'verify'])->name('user.verification');
+
 
 // Amdin Route
 Route::group(['prefix'=>'admin'],function(){
