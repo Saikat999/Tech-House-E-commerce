@@ -61,10 +61,14 @@ class LoginController extends Controller
 
             //login this user
 
-            if(Auth::guard('web')->attempt(['email'=> $request->email,'password'=> $request->password],$request->remember_token)){
+            if(Auth::guard('web')->attempt(['email'=> $request->email,'password'=> $request->password],$request->remember)){
                
                 //  log his/her now
                 return redirect()->intended(route('index'));
+                // return redirect('/');
+            }else{
+                session()->flash('sticky_error','Invalid Email or Password');
+                return back();
             }
         }else{
              // send him a token again
@@ -74,7 +78,7 @@ class LoginController extends Controller
                 return redirect('/');
 
              }else{
-                session()->flash('errors','Please log in first');
+                session()->flash('sticky_error','Please log in first');
                 return redirect()->route('login');
              }
         }
