@@ -14,6 +14,9 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\DivisionController;
 use App\Http\Controllers\Backend\DistrictController;
 
+use App\Http\Controllers\Auth\Admin\LoginController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,7 +56,10 @@ Route::get('/token/{token}',[VerificationController::class,'verify'])->name('use
 
 // Amdin Route
 Route::group(['prefix'=>'admin'],function(){
-    Route::get('/',[PagesController::class,'index']);
+    Route::get('/',[PagesController::class,'index'])->name('admin.index');
+    Route::get('/login',[LoginController::class,'showLoginForm'])->name('admin.login');
+    Route::post('/login/submit',[LoginController::class,'login'])->name('admin.login.submit');
+    Route::post('/logout/submit',[LoginController::class,'logout'])->name('admin.logout');
 
     // Product Route
     Route::group(['prefix'=>'/products'],function(){
