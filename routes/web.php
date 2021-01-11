@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductsController;
 use App\Http\Controllers\Frontend\CategoriesController;
 use App\Http\Controllers\Frontend\VerificationController;
+use App\Http\Controllers\Frontend\UserController;
 
 use App\Http\Controllers\Backend\PagesController;
 use App\Http\Controllers\Backend\ProductController;
@@ -51,7 +52,13 @@ Route::get('/category/{id}',[CategoriesController::class,'show'])->name('categor
 
 
 //User Routes
-Route::get('/token/{token}',[VerificationController::class,'verify'])->name('user.verification');
+Route::group(['prefix'=>'user'],function(){
+    Route::get('/token/{token}',[VerificationController::class,'verify'])->name('user.verification');
+    Route::get('/dashboard',[UserController::class,'dashboard'])->name('user.dashboard');
+    Route::get('/profile',[UserController::class,'profile'])->name('user.profile');
+    Route::post('/profile/update',[UserController::class,'profileUpdate'])->name('user.profile.update');
+});
+
 
 
 // Amdin Route

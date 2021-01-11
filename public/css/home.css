@@ -188,3 +188,8 @@ html{
     border-radius: 0px!important;
 }
 /* End Sidebar part */
+
+/* user profile section */
+.pointer{
+    cursor: pointer;
+}
